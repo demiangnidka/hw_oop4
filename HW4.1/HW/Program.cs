@@ -116,23 +116,63 @@ class Program
 {
     static void Main(string[] args)
     {
-        Team team = new Team("Elite barbarians");
+        List<Worker> workers = new List<Worker>();
 
-        Developer dev = new Developer("Artem");
-        Manager manager = new Manager("Bogdan");
+        while (true)
+        {
+            Console.WriteLine("\n ====== Menu ======");
+            Console.WriteLine("1. Add (Developer)");
+            Console.WriteLine("2. Add (manager)");
+            Console.WriteLine("3. Show all workers and their day");
+            Console.WriteLine("0. Exit");
+            Console.Write("Select action: ");
 
-        dev.FillWorkDay();
-        manager.FillWorkDay();
+            string choice = Console.ReadLine();
 
-        team.AddWorker(dev);
-        team.AddWorker(manager);
+            switch (choice)
+            {
+                case "1":
+                    Console.Write("Enter developer`s name:");
+                    string devName = Console.ReadLine();
+                    workers.Add(new Developer(devName));
+                    Console.WriteLine($"Developer {devName} has been added");
+                    break;
 
-        Console.WriteLine("Information:");
-        team.ShowTeamInfo();
+                case "2":
+                    Console.Write("Enter manager`s name:");
+                    string managerName = Console.ReadLine();
+                    workers.Add(new Manager(managerName));
+                    Console.WriteLine($"Manager {managerName} has been added");
+                    break;
 
-        Console.WriteLine("Full information:");
-        team.ShowDetailedTeamInfo();
+                case "3":
+                    if (workers.Count == 0)
+                    {
+                        Console.WriteLine("The workers list is empty.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n----- Information about workers -----");
+                        foreach (var worker in workers)
+                        {
+                            worker.FillWorkDay();
+                            Console.WriteLine($"Name: {worker.Name}, Position: {worker.Position}");
+                            Console.WriteLine($"Workday:\n{worker.WorkDay}");
+                            Console.WriteLine("--------------------------------");
+                        }
+                    }
+                    break;
 
+                case "0":
+                    Console.WriteLine("The program has been completed.");
+                    return;
+
+                default:
+                    Console.WriteLine("Wrong choice");
+                    break;
+            }
+
+        }
     }
 }
 
