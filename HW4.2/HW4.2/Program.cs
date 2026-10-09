@@ -32,16 +32,55 @@ class Program
     static void Main(string[] args)
     {
         Convertor convertor = new Convertor(44.90m, 50.55m);
-        decimal uahAmount = 1337m;
-        decimal usdAmount = 67m;
-        decimal eurAmount = 228m;
+        while (true)
+        {
+            Console.WriteLine("\n ===== Convertor =====");
+            Console.WriteLine("1. UAH -> USD");
+            Console.WriteLine("2. UAH -> EUR");
+            Console.WriteLine("3. USD -> UAH");
+            Console.WriteLine("4. EUR -> UAH");
+            Console.WriteLine("0. Exit");
+            Console.Write("Select action: ");
 
-        Console.WriteLine("Convert from UAH: ");
-        Console.WriteLine($"{uahAmount} UAH = {convertor.ConvertToUsd(uahAmount)} USD");
-        Console.WriteLine($"{uahAmount} UAH = {convertor.ConvertToEur(uahAmount)} EUR");
+            string choice = Console.ReadLine();
 
-        Console.WriteLine("Convert to UAH: ");
-        Console.WriteLine($"{usdAmount} USD = {convertor.ConvertFromUsd(usdAmount)} UAH");
-        Console.WriteLine($"{eurAmount} EUR = {convertor.ConvertFromUsd(eurAmount)} UAH");
-    }
+            switch (choice)
+            {
+                case "1":
+                    Console.Write("Enter amount in UAH: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal uahToUsd))
+                    {
+                        Console.WriteLine($"{uahToUsd} UAH = {convertor.ConvertToUsd(uahToUsd):F2} USD");
+                    }
+                    break;
+
+                case "2":
+                    Console.Write("Enter amount in UAH: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal uahToEur))
+                        Console.WriteLine($"{uahToEur} UAH = {convertor.ConvertToEur(uahToEur):F2} EUR");
+                    break;
+
+                case "3":
+                    Console.Write("Enter amount in USD: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal usdToUah))
+                        Console.WriteLine($"{usdToUah} USD = {convertor.ConvertFromUsd(usdToUah):F2} UAH");
+                    break;
+
+                case "4":
+                    Console.Write("Enter amount in EUR: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal eurToUah))
+                        Console.WriteLine($"{eurToUah} EUR = {convertor.ConvertFromEur(eurToUah):F2} UAH");
+                    break;
+
+                case "0":
+                    Console.WriteLine("The program has been completed");
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid choice");
+                    break;
+            }
+        }
+     }
 }
+
