@@ -168,7 +168,7 @@ class Program
                     return;
 
                 default:
-                    Console.WriteLine("Wrong choice");
+                    Console.WriteLine("Invalid choice");
                     break;
             }
 
