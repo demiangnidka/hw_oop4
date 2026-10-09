@@ -8,8 +8,8 @@ namespace HW4._4
         public int Quantity { get; set; }
         public string Unit { get; set; }
 
-        public Food(decimal price, string countryOfOrigin, string name, DateTime packagingDate, string description, DateTime expirationDate, int quantity, string unit)
-            : base(price, countryOfOrigin, name, packagingDate, description)
+        public Food(decimal price, string countryOfOrigin, string name, DateTime manufactureDate, string description, DateTime expirationDate, int quantity, string unit)
+            : base(price, countryOfOrigin, name, manufactureDate, description)
         {
             ExpirationDate = expirationDate;
             Quantity = quantity;

@@ -7,15 +7,15 @@ namespace HW4._4
         public decimal Price { get; set; }
         public string CountryOfOrigin { get; set; }
         public string Name { get; set; }
-        public DateTime PackagingDate { get; set; }
+        public DateTime ManufactureDate { get; set; }
         public string Description { get; set; }
 
-        public Product(decimal price, string countryOfOrigin, string name, DateTime packagingDate, string description)
+        public Product(decimal price, string countryOfOrigin, string name, DateTime manufactureDate, string description)
         {
             Price = price;
             CountryOfOrigin = countryOfOrigin;
             Name = name;
-            PackagingDate = packagingDate;
+            ManufactureDate = manufactureDate;
             Description = description;
         }
     }

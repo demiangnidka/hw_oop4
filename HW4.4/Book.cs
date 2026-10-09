@@ -6,14 +6,14 @@ namespace HW4._4
     {
         public int PageCount { get; set; }
         public string Publisher { get; set; }
-        public string Authors { get; set; }
+        public string Author { get; set; }
 
-        public Book(decimal price, string countryOfOrigin, string name, DateTime packagingDate, string description, int pageCount, string publisher, string authors)
-            : base(price, countryOfOrigin, name, packagingDate, description)
+        public Book(decimal price, string countryOfOrigin, string name, DateTime manufactureDate, string description, int pageCount, string publisher, string author)
+            : base(price, countryOfOrigin, name, manufactureDate, description)
         {
             PageCount = pageCount;
             Publisher = publisher;
-            Authors = authors;
+            Author = author;
         }
     }
 }

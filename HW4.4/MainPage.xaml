@@ -6,21 +6,61 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
-                <Button Grid.Column="0" Text="Add" Clicked="OnAddProductClicked" />
-                <Button Grid.Column="1" Text="Delete" Clicked="OnRemoveProductClicked" />
-            </Grid>
+            <Button Text="Add Product" 
+                    Clicked="OnAddProductClicked" 
+                    HorizontalOptions="Fill" />
 
-            <CollectionView x:Name="ProductsListView">
+            <CollectionView x:Name="ProductsListView" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="0,5" Padding="10">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
-                                <Label Text="{Binding Price, StringFormat='Price: {0} UAH'}" />
-                                <Label Text="{Binding CountryOfOrigin, StringFormat='Counrty: {0}'}" />
-                                <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" />
-                            </VerticalStackLayout>
+                        <Border Margin="0,5" Padding="12" StrokeShape="RoundRectangle 8">
+                            <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+
+                                <VerticalStackLayout Grid.Column="0" Spacing="3" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                                    <Label Text="{Binding Price, StringFormat='Price: {0:F2} UAH'}" />
+                                    <Label Text="{Binding CountryOfOrigin, StringFormat='Country: {0}'}" />
+                                    <Label Text="{Binding ManufactureDate, StringFormat='Manufactured: {0:yyyy-MM-dd}'}" FontSize="13" TextColor="Gray" />
+
+                                    <Label Text="{Binding ExpirationDate, StringFormat='Expires: {0:yyyy-MM-dd}'}" 
+                                           FontSize="13" 
+                                           TextColor="OrangeRed">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding ExpirationDate}" Value="{x:Null}">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+
+                                    <Label Text="{Binding Author, StringFormat='Author: {0}'}" 
+                                           FontSize="13" 
+                                           TextColor="LightBlue">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Author}" Value="{x:Null}">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+
+                                    <Label Text="{Binding Publisher, StringFormat='Publisher: {0}'}" 
+                                           FontSize="13" 
+                                           TextColor="Gray">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Publisher}" Value="{x:Null}">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </VerticalStackLayout>
+
+                                <Button Grid.Column="1" 
+                                        Text="Delete" 
+                                        BackgroundColor="#EF4444" 
+                                        TextColor="White"
+                                        Clicked="OnRemoveProductItemClicked" 
+                                        CommandParameter="{Binding .}" 
+                                        VerticalOptions="Center" />
+                            </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -28,5 +68,4 @@
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
